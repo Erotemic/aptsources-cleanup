@@ -10,8 +10,9 @@ from os.path import exists
 
 
 def check_integrity(pkg, paragraphs, debug_fail=0, *,
-    md5sum_cmd=('md5sum', '--check', '--strict', '--warn', '--quiet')
-):
+                    md5sum_cmd=('md5sum', '--check',
+                                '--strict', '--warn', '--quiet')
+                    ):
     """Check the integrity of an installed Apt package
 
     ...based on its checksum file and warn about possible issues.

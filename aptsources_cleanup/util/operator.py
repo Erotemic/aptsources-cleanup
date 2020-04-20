@@ -1,8 +1,8 @@
 # -*- coding: utf-8
 
 __all__ = (
-	"identity", "methodcaller", "starcall"
-	"itemgetter0", "itemgetter1",
+    "identity", "methodcaller", "starcall"
+    "itemgetter0", "itemgetter1",
 )
 
 import operator
@@ -12,48 +12,45 @@ itemgetter0, itemgetter1 = map(operator.itemgetter, range(2))
 
 
 def identity(x):
-	"""Returns its attribute"""
-	return x
+    """Returns its attribute"""
+    return x
 
 
 class methodcaller:
-	"""Binds arguments for instance(-like) method calls.
+    """Binds arguments for instance(-like) method calls.
 
-	Instances of this class are callable and pass their single positional
-	argument as the first positional argument to the wrapped function followed by
-	the other arguments given during instantiation."""
+    Instances of this class are callable and pass their single positional
+    argument as the first positional argument to the wrapped function followed by
+    the other arguments given during instantiation."""
 
-	__slots__ = ('func', 'args')
+    __slots__ = ('func', 'args')
 
+    def __new__(cls, func, *args):
+        if not callable(func):
+            return operator.methodcaller(func, *args)
+        return super().__new__(cls)
 
-	def __new__(cls, func, *args):
-		if not callable(func):
-			return operator.methodcaller(func, *args)
-		return super().__new__(cls)
+    def __init__(self, func, *args):
+        self.func = func
+        self.args = args
 
-
-	def __init__(self, func, *args):
-		self.func = func
-		self.args = args
-
-
-	def __call__(self, obj):
-		return self.func(obj, *self.args)
+    def __call__(self, obj):
+        return self.func(obj, *self.args)
 
 
 def starcall(func, args):
-	"""Calls 'func' with variable arguments.
+    """Calls 'func' with variable arguments.
 
-	Useful to create partial function objects that accept variadic arguments when
-	used in contexts that don't expect it."""
+    Useful to create partial function objects that accept variadic arguments when
+    used in contexts that don't expect it."""
 
-	return func(*args)
+    return func(*args)
 
 
 def peek(func, *args):
-	"""Calls func with the given arguments and returns _the first argument_."""
+    """Calls func with the given arguments and returns _the first argument_."""
 
-	if not args:
-		raise TypeError('Need at least 2 arguments; got 1')
-	func(*args)
-	return args[0]
+    if not args:
+        raise TypeError('Need at least 2 arguments; got 1')
+    func(*args)
+    return args[0]
