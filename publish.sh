@@ -36,16 +36,7 @@ Usage:
     export TWINE_PASSWORD=<pypi-password>
 
     source $(secret_loader.sh)
-
-    MB_PYTHON_TAG=cp38-cp38m 
-    MB_PYTHON_TAG=cp37-cp37m 
-    MB_PYTHON_TAG=cp36-cp36m 
-    MB_PYTHON_TAG=cp35-cp35m 
-    MB_PYTHON_TAG=cp27-cp27mu
-
-    echo "MB_PYTHON_TAG = $MB_PYTHON_TAG"
-    MB_PYTHON_TAG=$MB_PYTHON_TAG ./run_multibuild.sh
-    DEPLOY_BRANCH=master DEPLOY_REMOTE=ibeis MB_PYTHON_TAG=$MB_PYTHON_TAG ./publish.sh yes
+    DEPLOY_BRANCH=master DEPLOY_REMOTE=<yourmod> ./publish.sh yes
 
     MB_PYTHON_TAG=py3-none-any ./publish.sh
 '''

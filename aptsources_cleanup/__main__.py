@@ -1,14 +1,10 @@
 # -*- coding: utf-8
-from .util.terminal import *
-from .util.operator import methodcaller, peek
-from .util.itertools import *
-from .util.fileutils import *
-from .util.filesystem import *
-from .util.gettext import *
-from .util.relations import *
-from .util.strings import *
-from .util.io import *
-from . import *
+from .util import (
+    _, _N, _U, foreach, peek, filterfalse, methodcaller, translations,
+    DictTranslations, replace_TextIOWrapper, remove_sources_files, prefix,
+    EquivalenceRelation, Choices, display_file
+)
+from . import get_duplicates, get_empty_files
 import sys
 import os.path
 import itertools
@@ -19,6 +15,7 @@ from itertools import starmap
 from functools import reduce, partial as fpartial
 import aptsources.sourceslist
 import aptsources_cleanup
+from .util.terminal import termwrap
 
 
 argparse._ = _

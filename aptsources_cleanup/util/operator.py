@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 __all__ = (
     "identity", "methodcaller", "starcall",
-    "itemgetter0", "itemgetter1",
+    "itemgetter0", "itemgetter1", "peek"
 )
 
 import operator

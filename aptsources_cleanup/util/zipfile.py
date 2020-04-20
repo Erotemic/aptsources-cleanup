@@ -6,6 +6,7 @@ import stat
 import errno
 import functools
 from zipfile import ZipInfo
+# from zipfile import *  # NOQA
 import zipfile as _zipfile
 __all__ = _zipfile.__all__
 

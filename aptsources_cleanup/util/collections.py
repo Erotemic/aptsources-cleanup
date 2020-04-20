@@ -5,8 +5,8 @@ functonality if any.
 
 __all__ = ['ExtSet']
 
-# from collections import *
-# from collections import abc
+from collections import *  # NOQA
+from collections import abc    # NOQA
 
 import collections as _collections
 __all__ += _collections.__all__
