@@ -55,8 +55,8 @@ def _strip_prepare_xfixes(xfixes):
     l_xfix = len(next(it_xfixes, ""))
     if l_xfix and any(map(l_xfix.__ne__, map(len, it_xfixes))):
         raise ValueError(
-            "All pre- and/or suffixes must be of equal length, but got: "
-            + ", ".join(tuple(map("{!r}[{:d}]".format, xfixes, map(len, xfixes)))))
+            "All pre- and/or suffixes must be of equal length, but got: " +
+            ", ".join(tuple(map("{!r}[{:d}]".format, xfixes, map(len, xfixes)))))
     return xfixes
 
 

@@ -5,7 +5,6 @@ __all__ = ['comp', 'LazyInstance']
 
 from .operator import identity
 from operator import attrgetter
-from functools import *
 import functools as _functools
 __all__ += _functools.__all__
 

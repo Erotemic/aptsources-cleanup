@@ -1,11 +1,10 @@
 # -*- coding: utf-8
 __all__ = ('display_file',)
 
-import os
 import sys
 import mmap
 from . import io, terminal
-from .gettext import _, _N, _U
+from .gettext import _
 
 
 def display_file(filename):

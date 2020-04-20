@@ -8,15 +8,13 @@ __all__ = (
 
 from . import terminal, collections
 from .strings import startswith_token, prefix, strip, contains_ordered
-from .operator import identity, methodcaller, peek, itemgetter0
+from .operator import identity, methodcaller
 from .itertools import unique, last, filterfalse
 from .functools import LazyInstance, comp, partial as fpartial
 from .zipfile import ZipFile
 import gettext as _gettext
 import operator
-import sys
 import os
-import errno
 import locale
 import unicodedata
 from itertools import islice, starmap, chain as ichain
@@ -91,8 +89,7 @@ def translation(domain, localedir=None, languages=None, _class=None,
 
     archive = __archive__
     if (localedir is None or archive is None or
-                not startswith_token(localedir, archive, os.sep)
-            ):
+                not startswith_token(localedir, archive, os.sep)):
         return _gettext.translation(
             domain, localedir, languages, _class, fallback, codeset)
 

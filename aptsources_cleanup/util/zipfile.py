@@ -1,13 +1,11 @@
 # -*- coding: utf-8
-from . import strings
 from . import collections
-from .itertools import filterfalse
 import sys
 import os
 import stat
 import errno
 import functools
-from zipfile import *
+from zipfile import ZipInfo
 import zipfile as _zipfile
 __all__ = _zipfile.__all__
 

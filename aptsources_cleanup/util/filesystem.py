@@ -5,7 +5,6 @@ __all__ = ('samefile', 'remove_sources_files')
 
 from .gettext import _
 from .terminal import termwrap
-import sys
 import os
 import os.path
 import errno

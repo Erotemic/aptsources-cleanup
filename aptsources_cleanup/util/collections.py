@@ -5,8 +5,8 @@ functonality if any.
 
 __all__ = ['ExtSet']
 
-from collections import *
-from collections import abc
+# from collections import *
+# from collections import abc
 
 import collections as _collections
 __all__ += _collections.__all__
@@ -20,16 +20,16 @@ class ExtSet(set):
     def add(self, x):
         """Same as set.add(). Returns True if the set was changed."""
 
-        l = len(self)
+        len_ = len(self)
         super().add(x)
-        return l != len(self)
+        return len_ != len(self)
 
     def discard(self, x):
         """Same as set.discard(). Returns True if the set was changed."""
 
-        l = len(self)
+        len_ = len(self)
         super().discard(x)
-        return l != len(self)
+        return len_ != len(self)
 
     def discard_first_of(self, iterable, default=None):
         """Removes and returns the first element that is a member of this set.

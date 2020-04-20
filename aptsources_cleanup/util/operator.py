@@ -1,7 +1,6 @@
 # -*- coding: utf-8
-
 __all__ = (
-    "identity", "methodcaller", "starcall"
+    "identity", "methodcaller", "starcall",
     "itemgetter0", "itemgetter1",
 )
 
