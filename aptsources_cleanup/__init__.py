@@ -22,8 +22,9 @@ from urllib.parse import urlparse
 aptsources = import_check('aptsources.sourceslist', 'apt')
 
 
-from .util.version import get_version as __version__
-__version__ = str(__version__())
+# from .util.version import get_version as __version__
+# __version__ = str(__version__())
+__version__ = '0.1.8.0'
 
 
 def get_duplicates(sourceslist, equivalent_schemes=EquivalenceRelation.EMPTY):

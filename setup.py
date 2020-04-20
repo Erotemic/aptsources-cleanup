@@ -1,22 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Installation:
-    pip install git+https://github.com/Erotemic/ubelt.git
-
-Developing:
-    git clone https://github.com/Erotemic/ubelt.git
-    pip install -e ubelt
-"""
 from setuptools import find_packages
 from setuptools import setup
+from os.path import dirname, join, exists
 
 
 def parse_description():
     """
     Parse the description in the README file
     """
-    from os.path import dirname, join, exists
     readme_fpath = join(dirname(__file__), 'README.md')
     # This breaks on pip install, so check that it exists.
     if exists(readme_fpath):
@@ -26,14 +18,35 @@ def parse_description():
     return ''
 
 
+def parse_version(fpath):
+    """
+    Statically parse the version number from a python file
+    """
+    import ast
+    if not exists(fpath):
+        raise ValueError('fpath={!r} does not exist'.format(fpath))
+    with open(fpath, 'r') as file_:
+        sourcecode = file_.read()
+    pt = ast.parse(sourcecode)
+    class VersionVisitor(ast.NodeVisitor):
+        def visit_Assign(self, node):
+            for target in node.targets:
+                if getattr(target, 'id', None) == '__version__':
+                    self.version = node.value.s
+    visitor = VersionVisitor()
+    visitor.visit(pt)
+    return visitor.version
+
+
 NAME = 'aptsources-cleanup'
-# VERSION = parse_version('aptsources_cleanup/__init__.py')
+VERSION = parse_version('aptsources_cleanup/__init__.py')
 
 
 if __name__ == '__main__':
     setup(
         name=NAME,
-        # version=VERSION,
+        version=VERSION,
+        author='David Foerster',
         long_description=parse_description(),
         long_description_content_type='text/markdown',
         install_requires=[
@@ -46,7 +59,7 @@ if __name__ == '__main__':
         },
         packages=find_packages('.'),
         entry_points={
-            # the console_scripts entry point creates the xdoctest executable
+            # the console_scripts entry point creates the aptsources-cleanup executable
             'console_scripts': [
                 'aptsources-cleanup = aptsources_cleanup.__main__:main'
             ]
